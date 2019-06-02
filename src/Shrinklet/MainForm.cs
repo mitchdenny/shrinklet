@@ -19,12 +19,11 @@ namespace Shrinklet
 	public class MainForm : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.Timer m_Timer;
-		private HansBlomme.Windows.Forms.NotifyIcon m_NotifyIcon;
-		private System.Windows.Forms.ContextMenu m_ContextMenu;
-		private System.Windows.Forms.MenuItem m_CloseMenuItem;
+		private System.Windows.Forms.NotifyIcon m_NotifyIcon;
 		private System.ComponentModel.IContainer components;
-
-		private TraceSwitch m_ShrinkletSwitch = new TraceSwitch("Shrinklet", string.Empty);
+        private ContextMenuStrip m_ContextMenu;
+        private ToolStripMenuItem m_CloseContextMenuItem;
+        private TraceSwitch m_ShrinkletSwitch = new TraceSwitch("Shrinklet", string.Empty);
 
 		public MainForm()
 		{
@@ -96,54 +95,61 @@ namespace Shrinklet
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
-			this.m_Timer = new System.Windows.Forms.Timer(this.components);
-			this.m_NotifyIcon = new HansBlomme.Windows.Forms.NotifyIcon(this.components);
-			this.m_ContextMenu = new System.Windows.Forms.ContextMenu();
-			this.m_CloseMenuItem = new System.Windows.Forms.MenuItem();
-			// 
-			// m_Timer
-			// 
-			this.m_Timer.Enabled = true;
-			this.m_Timer.Interval = 1000;
-			this.m_Timer.Tick += new System.EventHandler(this.m_Timer_Tick);
-			// 
-			// m_NotifyIcon
-			// 
-			this.m_NotifyIcon.ContextMenu = this.m_ContextMenu;
-			this.m_NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("m_NotifyIcon.Icon")));
-			this.m_NotifyIcon.Text = "Shrinklet";
-			this.m_NotifyIcon.Visible = true;
-			this.m_NotifyIcon.BalloonHide += new HansBlomme.Windows.Forms.NotifyIcon.BalloonHideEventHandler(this.m_NotifyIcon_BalloonHide);
-			this.m_NotifyIcon.BalloonTimeout += new HansBlomme.Windows.Forms.NotifyIcon.BalloonTimeoutEventHandler(this.m_NotifyIcon_BalloonTimeout);
-			this.m_NotifyIcon.BalloonClick += new HansBlomme.Windows.Forms.NotifyIcon.BalloonClickEventHandler(this.m_NotifyIcon_BalloonClick);
-			// 
-			// m_ContextMenu
-			// 
-			this.m_ContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																						  this.m_CloseMenuItem});
-			// 
-			// m_CloseMenuItem
-			// 
-			this.m_CloseMenuItem.Index = 0;
-			this.m_CloseMenuItem.Text = "Close";
-			this.m_CloseMenuItem.Click += new System.EventHandler(this.m_CloseMenuItem_Click);
-			// 
-			// MainForm
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(346, 152);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "MainForm";
-			this.ShowInTaskbar = false;
-			this.Text = "Shrinklet";
-			this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
-			this.Load += new System.EventHandler(this.MainForm_Load);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.m_Timer = new System.Windows.Forms.Timer(this.components);
+            this.m_NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.m_ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.m_CloseContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ContextMenu.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // m_Timer
+            // 
+            this.m_Timer.Enabled = true;
+            this.m_Timer.Interval = 1000;
+            this.m_Timer.Tick += new System.EventHandler(this.m_Timer_Tick);
+            // 
+            // m_NotifyIcon
+            // 
+            this.m_NotifyIcon.ContextMenuStrip = this.m_ContextMenu;
+            this.m_NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("m_NotifyIcon.Icon")));
+            this.m_NotifyIcon.Text = "Shrinklet";
+            this.m_NotifyIcon.Visible = true;
+            this.m_NotifyIcon.BalloonTipClicked += new System.EventHandler(this.m_NotifyIcon_BalloonClick);
+            this.m_NotifyIcon.BalloonTipClosed += new System.EventHandler(this.m_NotifyIcon_BalloonTimeout);
+            this.m_NotifyIcon.Click += new System.EventHandler(this.m_NotifyIcon_BalloonClick);
+            // 
+            // m_ContextMenu
+            // 
+            this.m_ContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_CloseContextMenuItem});
+            this.m_ContextMenu.Name = "m_ContextMenu";
+            this.m_ContextMenu.Size = new System.Drawing.Size(104, 26);
+            // 
+            // m_CloseContextMenuItem
+            // 
+            this.m_CloseContextMenuItem.Name = "m_CloseContextMenuItem";
+            this.m_CloseContextMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.m_CloseContextMenuItem.Text = "Close";
+            this.m_CloseContextMenuItem.Click += new System.EventHandler(this.m_CloseMenuItem_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(346, 152);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "MainForm";
+            this.ShowInTaskbar = false;
+            this.Text = "Shrinklet";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.m_ContextMenu.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -375,18 +381,21 @@ namespace Shrinklet
 				Trace.WriteLine("Entering MainForm.PopOfferToShrinkBalloon().");
 			}
 #line default
-			#endregion
+            #endregion
 
-			this.m_NotifyIcon.ShowBalloon(
-				HansBlomme.Windows.Forms.NotifyIcon.EBalloonIcon.Info,
-				"Shrinklet has detected a URL in the clipboard. Click here to replace the long URL in the clipboard with a shorter URL from Shrinkster.com",
-				"URL Detected",
-				10
-				);
+            this.m_NotifyIcon.Visible = true;
 
-			#region Tracing . . .
+            this.m_NotifyIcon.ShowBalloonTip(
+                10000,
+                "URL Detected",
+                "Shrinklet has detected a URL in the clipboard. Click here to replace the long URL in the clipboard with a shorter URL from Shrinkster.com",
+                ToolTipIcon.Info
+                );
+
+
+            #region Tracing . . .
 #line hidden
-			if (this.m_ShrinkletSwitch.TraceVerbose)
+            if (this.m_ShrinkletSwitch.TraceVerbose)
 			{
 				Trace.WriteLine("Leaving MainForm.PopOfferToShrinkBalloon().");
 			}
@@ -500,13 +509,13 @@ namespace Shrinklet
 #line default
 			#endregion
 
-			this.m_NotifyIcon.ShowBalloon(
-				HansBlomme.Windows.Forms.NotifyIcon.EBalloonIcon.Error,
-				"For some reason Shrinklet was unable to Shrink the URL detected in the clipboard. Are you connected to the Internet?",
-				"Error Shrinking",
-				10
-				);
-			this.m_State = ShrinkletState.Error;
+            this.m_NotifyIcon.ShowBalloonTip(
+                10000,
+                "Error Shrinking",
+                "For some reason Shrinklet was unable to Shrink the URL detected in the clipboard. Are you connected to the Internet?",
+                ToolTipIcon.Error
+                );
+            this.m_State = ShrinkletState.Error;
 
 			#region Tracing . . .
 #line hidden
@@ -607,16 +616,16 @@ namespace Shrinklet
 #line default
 			#endregion
 
-			this.m_NotifyIcon.ShowBalloon(
-				HansBlomme.Windows.Forms.NotifyIcon.EBalloonIcon.Info,
-				"Shrinklet has shrunk the URL and placed it back into the clipboard. Click here to test the URL by launching a web-browser.",
-				"URL Shrunk",
-				10
-				);
+            this.m_NotifyIcon.ShowBalloonTip(
+                10000,
+                "URL Shrunk",
+                "Shrinklet has shrunk the URL and placed it back into the clipboard. Click here to test the URL by launching a web-browser.",
+                ToolTipIcon.Info
+                );
 
-			#region Tracing . . .
+            #region Tracing . . .
 #line hidden
-			if (this.m_ShrinkletSwitch.TraceVerbose)
+            if (this.m_ShrinkletSwitch.TraceVerbose)
 			{
 				Trace.WriteLine("Leaving MainForm.PopOfferToTestShrunkUrlBalloon().");
 			}
@@ -633,18 +642,18 @@ namespace Shrinklet
 				Trace.WriteLine("Entering MainForm.PopOfferToTrackShrunkUrlBalloon().");
 			}
 #line default
-			#endregion
+            #endregion
 
-			this.m_NotifyIcon.ShowBalloon(
-				HansBlomme.Windows.Forms.NotifyIcon.EBalloonIcon.Info,
-				"You have a Shrinkster.com URL in the clipboard. Click here to look at the tracking information.",
-				"Track URL",
-				10
-				);
+            this.m_NotifyIcon.ShowBalloonTip(
+                10000,
+                "Track URL",
+                "You have a Shrinkster.com URL in the clipboard. Click here to look at the tracking information.",
+                ToolTipIcon.Info
+                );
 
-			#region Tracing . . .
+            #region Tracing . . .
 #line hidden
-			if (this.m_ShrinkletSwitch.TraceVerbose)
+            if (this.m_ShrinkletSwitch.TraceVerbose)
 			{
 				Trace.WriteLine("Leaving MainForm.PopOfferToTrackShrunkUrlBalloon().");
 			}
@@ -735,7 +744,7 @@ namespace Shrinklet
 			#endregion
 		}
 
-		private void m_NotifyIcon_BalloonClick(object sender)
+		private void m_NotifyIcon_BalloonClick(object sender, EventArgs e)
 		{
 			#region Tracing . . .
 #line hidden
@@ -775,7 +784,7 @@ namespace Shrinklet
 			#endregion
 		}
 
-		private void m_NotifyIcon_BalloonTimeout(object sender)
+		private void m_NotifyIcon_BalloonTimeout(object sender, EventArgs e)
 		{
 			#region Tracing . . .
 #line hidden
@@ -798,7 +807,7 @@ namespace Shrinklet
 			#endregion
 		}
 
-		private void m_NotifyIcon_BalloonHide(object sender)
+		private void m_NotifyIcon_BalloonHide(object sender, EventArgs e)
 		{
 			#region Tracing . . .
 #line hidden
