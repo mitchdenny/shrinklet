@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shrinklet", "Shrinklet\Shrinklet.csproj", "{4E19922E-DEA3-481C-B017-04153C1CBC77}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ShrinkletSetup", "ShrinkletSetup\ShrinkletSetup.vdproj", "{A9ACFEEE-5658-4BE1-B79C-57AE94A5FC00}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4E19922E-DEA3-481C-B017-04153C1CBC77}.Debug.ActiveCfg = Debug|.NET
+		{4E19922E-DEA3-481C-B017-04153C1CBC77}.Debug.Build.0 = Debug|.NET
+		{4E19922E-DEA3-481C-B017-04153C1CBC77}.Release.ActiveCfg = Release|.NET
+		{4E19922E-DEA3-481C-B017-04153C1CBC77}.Release.Build.0 = Release|.NET
+		{A9ACFEEE-5658-4BE1-B79C-57AE94A5FC00}.Debug.ActiveCfg = Debug
+		{A9ACFEEE-5658-4BE1-B79C-57AE94A5FC00}.Release.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
